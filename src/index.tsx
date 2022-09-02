@@ -6,6 +6,7 @@ import {AppContainer} from './containers'
 
 import reportWebVitals from './reportWebVitals';
 import ApolloClient from './graphql/apollo.config'
+import ThemeProvider from './theme'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={ApolloClient}>
-      <AppContainer />
+      <ThemeProvider>
+        <AppContainer />
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>
 );
