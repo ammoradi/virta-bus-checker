@@ -1,0 +1,23 @@
+query stopTimes(
+  $stopId: String = "HSL:1201110"
+  $startTime: Long = 0
+  $timeRange: Int = 864000
+  $rows: Int = 5
+) {
+  stop(id: $stopId) {
+    id
+    name
+    stopTimes: stoptimesWithoutPatterns(
+      startTime: $startTime
+      timeRange: $timeRange
+      numberOfDepartures: $rows
+    ) {
+      realtimeArrival
+      arrivalDelay
+      trip {
+        id
+        routeShortName
+      }
+    }
+  }
+}

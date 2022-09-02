@@ -1,0 +1,246 @@
+schema {
+  query: Query
+}
+
+type Query {
+  stop(id: String!): Stop
+}
+
+enum Mode {
+  BUS
+  TRAM
+}
+
+scalar Long
+
+type Route {
+  id: ID!
+  # Global object ID provided by Relay. This value can be used to refetch this object using node query.
+
+  gtfsId: String!
+  # ID of the route in format FeedId:RouteId
+
+  shortName: String
+  # Short name of the route, usually a line number, e.g. 550
+
+  longName: String
+  # Long name of the route, e.g. Helsinki-Leppävaara
+
+  mode: Mode
+  # Transport mode of this route, e.g. BUS
+
+  type: Int
+  # The raw GTFS route type as a integer. For the list of possible values, see: https://developers.google.com/transit/gtfs/reference/#routestxt and https://developers.google.com/transit/gtfs/reference/extended-route-types
+
+  desc: String
+  url: String
+  color: String
+  # The color (in hexadecimal format) the agency operating this route would prefer to use on UI elements (e.g. polylines on a map) related to this route. This value is not available for most routes.
+
+  textColor: String
+  # The color (in hexadecimal format) the agency operating this route would prefer to use when displaying text related to this route. This value is not available for most routes.
+
+  patterns: [Pattern]
+  # List of patterns which operate on this route
+
+  stops: [Stop]
+  # List of stops on this route
+
+  trips: [Trip]
+  # List of trips which operate on this route
+}
+
+type Pattern {
+  id: ID!
+  # Global object ID provided by Relay. This value can be used to refetch this object using node query.
+
+  route: Route!
+  # The route this pattern runs on
+
+  directionId: Int
+  # Direction of the pattern. Possible values: 0, 1 or -1.
+  # -1 indicates that the direction is irrelevant, i.e. the route has patterns only in one direction.
+
+  name: String
+  # Name of the pattern. Pattern name can be just the name of the route or it can include details of destination and origin stops.
+
+  code: String!
+  # ID of the pattern
+
+  headsign: String
+  # Vehicle headsign used by trips of this pattern
+
+  trips: [Trip!]
+  # Trips which run on this pattern
+
+  tripsForDate(serviceDay: String serviceDate: String): [Trip!]
+  # Trips which run on this pattern on the specified date
+
+  stops: [Stop!]
+  # List of stops served by this pattern
+
+  semanticHash: String
+  # Hash code of the pattern. This value is stable and not dependent on the pattern id, i.e. this value can be used to check whether two patterns are the same, even if their ids have changed.
+}
+
+type Trip {
+  id: ID!
+  # Global object ID provided by Relay. This value can be used to refetch this object using node query.
+
+  gtfsId: String!
+  # ID of the trip in format FeedId:TripId
+
+  route: Route!
+  # The route the trip is running on
+
+  serviceId: String
+  activeDates: [String]
+  # List of dates when this trip is in service. Format: YYYYMMDD
+
+  tripShortName: String
+  tripHeadsign: String
+  # Headsign of the vehicle when running on this trip
+
+  routeShortName: String
+  # Short name of the route this trip is running. See field shortName of Route.
+
+  directionId: String
+  # Direction code of the trip, i.e. is this the outbound or inbound trip of a pattern. Possible values: 0, 1 or null if the direction is irrelevant, i.e. the pattern has trips only in one direction.
+
+  blockId: String
+  shapeId: String
+
+  pattern: Pattern
+  # The pattern the trip is running on
+
+  stops: [Stop!]!
+  # List of stops this trip passes through
+
+  semanticHash: String!
+  # Hash code of the trip. This value is stable and not dependent on the trip id.
+
+  stoptimes: [Stoptime]
+  # List of times when this trip arrives to or departs from a stop
+
+  departureStoptime(serviceDate: String): Stoptime
+  # Departure time from the first stop
+
+  arrivalStoptime(serviceDate: String): Stoptime
+  # Arrival time to the final stop
+
+  stoptimesForDate(serviceDay: String serviceDate: String): [Stoptime]
+  geometry: [[Float]]
+  # List of coordinates of this trip's route
+}
+
+type Stoptime {
+  stop: Stop
+  # The stop where this arrival/departure happens
+
+  scheduledArrival: Int
+  # Scheduled arrival time. Format: seconds since midnight of the departure date
+
+  realtimeArrival: Int
+  # Realtime prediction of arrival time. Format: seconds since midnight of the departure date
+
+  arrivalDelay: Int
+  # The offset from the scheduled arrival time in seconds. Negative values indicate that the trip is running ahead of schedule.
+
+  scheduledDeparture: Int
+  # Scheduled departure time. Format: seconds since midnight of the departure date
+
+  realtimeDeparture: Int
+  # Realtime prediction of departure time. Format: seconds since midnight of the departure date
+
+  departureDelay: Int
+  # The offset from the scheduled departure time in seconds. Negative values indicate that the trip is running ahead of schedule
+
+  timepoint: Boolean
+  # true, if this stop is used as a time equalization stop. false otherwise.
+
+  realtime: Boolean
+  # true, if this stoptime has real-time data available
+
+  serviceDay: Long
+  # Departure date of the trip. Format: Unix timestamp (local time) in seconds.
+
+  trip: Trip
+  # Trip which this stoptime is for
+
+  headsign: String
+  # Vehicle headsign of the trip on this stop. Trip headsigns can change during the trip (e.g. on routes which run on loops), so this value should be used instead of tripHeadsign to display the headsign relevant to the user.
+
+  stopSequence: Int
+  # The sequence number of the stop
+}
+
+type Stop {
+  id: ID!
+  # Global object ID provided by Relay. This value can be used to refetch this object using node query.
+
+  stopTimesForPattern(
+    id: String!
+    startTime: Long = 0
+    timeRange: Int = 86400
+    numberOfDepartures: Int = 2
+    omitNonPickups: Boolean = false
+    omitCanceled: Boolean = true
+  ): [Stoptime]
+  # Returns timetable of the specified pattern at this stop
+
+  gtfsId: String!
+  # ÌD of the stop in format FeedId:StopId
+
+  name: String!
+  # Name of the stop, e.g. Pasilan asema
+
+  lat: Float
+  # Latitude of the stop (WGS 84)
+
+  lon: Float
+  # Longitude of the stop (WGS 84)
+
+  code: String
+  # Stop code which is visible at the stop
+
+  desc: String
+  # Description of the stop, usually a street name
+
+  zoneId: String
+  # ID of the zone where this stop is located
+
+  url: String
+
+  parentStation: Stop
+  # The station which this stop is part of (or null if this stop is not part of a station)
+
+  direction: String
+  timezone: String
+  vehicleType: Int
+  # The raw GTFS route type used by routes which pass through this stop. For the list of possible values, see: https://developers.google.com/transit/gtfs/reference/#routestxt and https://developers.google.com/transit/gtfs/reference/extended-route-types
+
+  vehicleMode: Mode
+  # Transport mode (e.g. BUS) used by routes which pass through this stop or null if mode cannot be determined, e.g. in case no routes pass through the stop.
+  # Note that also other types of vehicles may use the stop, e.g. tram replacement buses might use stops which have TRAM as their mode.
+
+  platformCode: String
+  # Identifier of the platform, usually a number. This value is only present for stops that are part of a station
+
+  stops: [Stop]
+  # Returns all stops that are children of this station (Only applicable for stations)
+
+  routes: [Route!]
+  # Routes which pass through this stop
+
+  patterns: [Pattern]
+  # Patterns which pass through this stop
+
+  stoptimesWithoutPatterns(
+    startTime: Long = 0
+    timeRange: Int = 86400
+    numberOfDepartures: Int = 5
+    omitNonPickups: Boolean = false
+    omitCanceled: Boolean = true
+  ): [Stoptime]
+  # Returns list of stoptimes (arrivals and departures) at this stop
+}
