@@ -1,10 +1,11 @@
 import React from 'react'
 
+import {StyledLogo} from './Logo.styled'
 import LogoImage from 'assets/images/logo.png'
 
 function Logo(): JSX.Element {
   return (
-    <img src={LogoImage} alt="Virta Ltd." />
+    <StyledLogo src={LogoImage} alt="Virta Ltd." />
   )
 }
 
