@@ -1,9 +1,16 @@
 import React from 'react'
 
-import { Header } from 'components/Header'
+import { Logo } from 'components/Logo'
+import { Clock } from 'components/Clock'
+import { StopTimes } from 'containers/StopTimes'
 
 import {useStopTimesQuery} from './App.graphql.generated'
-import {StyledAppContainer} from './App.styled'
+import {
+  StyledAppContainer,
+  StyledLogoColumn,
+  StyledStopTimesColumn,
+  StyledClockColumn
+} from './App.styled'
 
 function AppContainer() {
   const {data} = useStopTimesQuery({ fetchPolicy: 'cache-and-network' })
@@ -12,7 +19,15 @@ function AppContainer() {
 
   return (
     <StyledAppContainer>
-      <Header />
+      <StyledLogoColumn>
+        <Logo />
+      </StyledLogoColumn>
+      <StyledStopTimesColumn>
+        <StopTimes />
+      </StyledStopTimesColumn>
+      <StyledClockColumn>
+        <Clock realtime />
+      </StyledClockColumn>
     </StyledAppContainer>
   )
 }
