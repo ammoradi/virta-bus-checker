@@ -1,6 +1,8 @@
 import React from 'react'
-import {useStopTimesQuery} from './App.graphql.generated'
 
+import { Header } from 'components/Header'
+
+import {useStopTimesQuery} from './App.graphql.generated'
 import {StyledAppContainer} from './App.styled'
 
 function AppContainer() {
@@ -10,7 +12,7 @@ function AppContainer() {
 
   return (
     <StyledAppContainer>
-      Main
+      <Header />
     </StyledAppContainer>
   )
 }
