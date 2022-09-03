@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const StyledRealtimeClock = styled.h2`
   font-weight: ${({ theme }) => theme.fonts.weights.semiBold};
   font-size: 54px;
-  line-height: 65;
   color: ${({ theme }) => theme.colors.graphite};
   margin: 0;
+  line-height: 42px;
+  height: 50px;
+  letter-spacing: -0.6px;
 `
