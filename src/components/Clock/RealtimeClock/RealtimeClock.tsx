@@ -13,7 +13,7 @@ export function RealtimeClock(): JSX.Element {
 
   useInterval(() => {
     setClock(getCurrentClock())
-  }, 1000)
+  }, 200)
 
   return (
     <StyledRealtimeClock data-testid={RealtimeClockTestId}>
