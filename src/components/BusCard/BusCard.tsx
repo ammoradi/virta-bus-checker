@@ -41,7 +41,7 @@ function BusCard({
   const delayTimeInMinutes = isDelayed ? getMinutesFromSeconds(absDelayTime) : 0;
 
   return (
-    <StyledBusCard>
+    <StyledBusCard role="listitem">
       <StyledBusDelayAndIcon>
         <StyledDelayBox isDelayed={isDelayed && delayTime > 0} data-testid={DelayBoxTestId} />
         <StyledBusIcon src={BusIcon} alt="Bus" />

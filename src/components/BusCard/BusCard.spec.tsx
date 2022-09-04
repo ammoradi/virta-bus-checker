@@ -16,7 +16,7 @@ describe('<BusCard />', () => {
     jest.useFakeTimers().setSystemTime(baseDate)
   })
 
-  it('should render green box when bus is not delayed', () => {
+  it('should render delay status', () => {
     renderWithThemeProvider(<BusCard name="15" baseTime={baseTime} serviceDay={serviceDayMock} arrivalTime={2160} delayTime={0} />)
 
     expect(screen.getByTestId(DelayBoxTestId)).toBeInTheDocument();
@@ -40,6 +40,13 @@ describe('<BusCard />', () => {
 
     expect(screen.queryByText('15')).not.toBeInTheDocument()
     expect(screen.getByText('15 (2 minutes late)')).toBeInTheDocument()
+  })
+
+  it('should render negative delay time if bus is coming sooner', () => {
+    renderWithThemeProvider(<BusCard name="15" baseTime={baseTime} serviceDay={serviceDayMock} arrivalTime={2160} delayTime={-60} />)
+
+    expect(screen.queryByText('15')).not.toBeInTheDocument()
+    expect(screen.getByText('15 (1 minute earlier)')).toBeInTheDocument()
   })
 
   it('should render expected arrival time', () => {

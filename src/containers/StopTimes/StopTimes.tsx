@@ -11,6 +11,7 @@ import {
 } from './StopTimes.styled'
 
 export const StopTimesSlug = 'Buses arriving to'
+export const StopTimesTestId = 'StopTimes'
 
 type StopTimesProps = {
   data?: StopTimesQuery
@@ -18,7 +19,7 @@ type StopTimesProps = {
 
 function StopTimes ({ data }: StopTimesProps) {
   return (
-    <StyledStopTimes>
+    <StyledStopTimes data-testid={StopTimesTestId}>
       <StyledSlug>
         {StopTimesSlug}
       </StyledSlug>
