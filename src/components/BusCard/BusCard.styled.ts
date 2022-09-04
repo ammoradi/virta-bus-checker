@@ -7,13 +7,16 @@ export const StyledBusCard = styled.div`
   height: 64px;
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding-right: 56px;
   margin-bottom: 8px;
+
+  @media ${({ theme }) => theme.breakpoints.mobile} {
+    padding-right: 0;
+  }
 `
 
-export const StyledBusIconAndName = styled.div`
+export const StyledBusDelayAndIcon = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
@@ -35,15 +38,28 @@ export const StyledBusIcon = styled.img`
   margin-left: 12px;
 `
 
+export const BusNameAndArrivalTime = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 16px;
+
+  @media ${({ theme }) => theme.breakpoints.mobile} {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+`
+
 export const StyledBusName = styled.span`
   font-weight: ${({ theme }) => theme.fonts.weights.regular};
   font-size: 16px;
   line-height: 24px;
   color: ${({ theme }) => theme.colors.graphite};
-  padding-left: 16px;
 `
 
 export const StyledArrivalTime = styled(StyledStaticClock)`
   display: inline-block;
-  width: 192px;
+  min-width: 192px;
 `

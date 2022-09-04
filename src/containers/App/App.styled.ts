@@ -32,8 +32,11 @@ export const StyledAppContainer = styled.div`
     background-size: auto 176px;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media ${({ theme }) => theme.breakpoints.tablet} {
     background-image: none;
+    padding: 24px 16px;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 `
 
@@ -42,13 +45,33 @@ export const StyledLogoColumn = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  order: 1;
+
+  @media ${({ theme }) => theme.breakpoints.tablet} {
+    width: 50%;
+    justify-content: flex-start;
+  }
 `
 
 export const StyledStopTimesColumn = styled.div`
   padding-left: 125px;
   flex: 1;
+  order: 2;
+
+  @media ${({ theme }) => theme.breakpoints.tablet} {
+    order: 3;
+    padding-left: 0;
+  }
 `
 
 export const StyledClockColumn = styled.div`
   width: 214px;
+  order: 3;
+
+  @media ${({ theme }) => theme.breakpoints.tablet} {
+    order: 2;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
 `

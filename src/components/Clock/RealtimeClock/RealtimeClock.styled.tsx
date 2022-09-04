@@ -10,4 +10,11 @@ export const StyledRealtimeClock = styled.h2`
   letter-spacing: -0.6px;
   position: sticky;
   top: 48px;
+
+  @media ${({ theme }) => theme.breakpoints.tablet} {
+    font-size: 16px;
+    height: unset;
+    line-height: 24px;
+    position: static;
+  }
 `

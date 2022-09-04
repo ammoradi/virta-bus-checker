@@ -8,9 +8,10 @@ import {DelayBoxTestId, ArrivalTimeTestId} from './BusCard.constants'
 import {getMinuteText} from './BusCard.utils'
 import {
   StyledBusCard,
-  StyledBusIconAndName,
+  StyledBusDelayAndIcon,
   StyledDelayBox,
   StyledBusIcon,
+  BusNameAndArrivalTime,
   StyledBusName,
   StyledArrivalTime
 } from './BusCard.styled';
@@ -34,23 +35,26 @@ function BusCard({
   const serviceDayTimestamp = serviceDay * 1000
   const arrivalUnixTimestamp = serviceDayTimestamp + (arrivalTime * 1000)
   const arrivalTimeInMinutes = getMinutesFromSeconds((arrivalUnixTimestamp - baseTime) / 1000)
+  const absDelayTime = Math.abs(delayTime)
 
   const isDelayed = !!delayTime;
-  const delayTimeInMinutes = isDelayed ? getMinutesFromSeconds(delayTime) : 0;
+  const delayTimeInMinutes = isDelayed ? getMinutesFromSeconds(absDelayTime) : 0;
 
   return (
     <StyledBusCard>
-      <StyledBusIconAndName>
-        <StyledDelayBox isDelayed={isDelayed} data-testid={DelayBoxTestId} />
+      <StyledBusDelayAndIcon>
+        <StyledDelayBox isDelayed={isDelayed && delayTime > 0} data-testid={DelayBoxTestId} />
         <StyledBusIcon src={BusIcon} alt="Bus" />
+      </StyledBusDelayAndIcon>
+      <BusNameAndArrivalTime>
         <StyledBusName>
-          {name} {isDelayed && `(${delayTimeInMinutes} ${getMinuteText(delayTimeInMinutes)} late)`}
+          {name} {isDelayed && `(${delayTimeInMinutes} ${getMinuteText(delayTimeInMinutes)} ${delayTime > 0 ? 'late' : 'earlier'})`}
         </StyledBusName>
-      </StyledBusIconAndName>
-      <StyledArrivalTime data-testid={ArrivalTimeTestId}>
-        In {arrivalTimeInMinutes} {getMinuteText(arrivalTimeInMinutes)} /{' '}
-        <Clock realtime={false} time={arrivalUnixTimestamp} />
-      </StyledArrivalTime>
+        <StyledArrivalTime data-testid={ArrivalTimeTestId}>
+          In {arrivalTimeInMinutes} {getMinuteText(arrivalTimeInMinutes)} /{' '}
+          <Clock realtime={false} time={arrivalUnixTimestamp} />
+        </StyledArrivalTime>
+      </BusNameAndArrivalTime>
     </StyledBusCard>
   )
 }

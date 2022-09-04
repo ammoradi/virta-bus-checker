@@ -7,4 +7,8 @@ export const StyledStaticClock = styled.span`
   line-height: 24px;
   text-align: right;
   color: ${({ theme }) => theme.colors.grey};
+
+  @media ${({ theme }) => theme.breakpoints.mobile} {
+    text-align: left;
+  }
 `
