@@ -1,1 +1,1 @@
-export {default as StopTimes, StopTimesTestId} from './StopTimes'
+export {default as StopTimes, StopTimesTestId} from './StopTimes';

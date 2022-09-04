@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledLogo = styled.img`
   width: 80px;
@@ -8,4 +8,4 @@ export const StyledLogo = styled.img`
   @media ${({ theme }) => theme.breakpoints.tablet} {
     position: static;
   }
-`
+`;

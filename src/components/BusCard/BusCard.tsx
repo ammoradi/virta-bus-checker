@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import {getMinutesFromSeconds} from 'utils/time'
-import {Clock} from 'components/Clock'
-import BusIcon from 'assets/icons/bus.svg'
+import {getMinutesFromSeconds} from 'utils/time';
+import {Clock} from 'components/Clock';
+import BusIcon from 'assets/icons/bus.svg';
 
-import {DelayBoxTestId, ArrivalTimeTestId} from './BusCard.constants'
-import {getMinuteText} from './BusCard.utils'
+import {DelayBoxTestId, ArrivalTimeTestId} from './BusCard.constants';
+import {getMinuteText} from './BusCard.utils';
 import {
   StyledBusCard,
   StyledBusDelayAndIcon,
@@ -32,10 +32,10 @@ type CardProps = {
 function BusCard({
   name, baseTime, serviceDay, arrivalTime, delayTime
 }: CardProps) {
-  const serviceDayTimestamp = serviceDay * 1000
-  const arrivalUnixTimestamp = serviceDayTimestamp + (arrivalTime * 1000)
-  const arrivalTimeInMinutes = getMinutesFromSeconds((arrivalUnixTimestamp - baseTime) / 1000)
-  const absDelayTime = Math.abs(delayTime)
+  const serviceDayTimestamp = serviceDay * 1000;
+  const arrivalUnixTimestamp = serviceDayTimestamp + (arrivalTime * 1000);
+  const arrivalTimeInMinutes = getMinutesFromSeconds((arrivalUnixTimestamp - baseTime) / 1000);
+  const absDelayTime = Math.abs(delayTime);
 
   const isDelayed = !!delayTime;
   const delayTimeInMinutes = isDelayed ? getMinutesFromSeconds(absDelayTime) : 0;
@@ -56,7 +56,7 @@ function BusCard({
         </StyledArrivalTime>
       </BusNameAndArrivalTime>
     </StyledBusCard>
-  )
+  );
 }
 
-export default BusCard
+export default BusCard;

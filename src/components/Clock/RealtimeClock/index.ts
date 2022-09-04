@@ -1,1 +1,1 @@
-export {RealtimeClock, RealtimeClockTestId} from './RealtimeClock'
+export {RealtimeClock, RealtimeClockTestId} from './RealtimeClock';

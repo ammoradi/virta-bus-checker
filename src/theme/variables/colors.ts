@@ -5,4 +5,4 @@ export const ThemeColors = {
   graphite: '#222222',
   green: '#00AD09',
   red: '#FF0000'
-} as const
+} as const;

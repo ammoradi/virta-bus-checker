@@ -1,1 +1,1 @@
-export { default as BusCard } from './BusCard'
+export {default as BusCard} from './BusCard';

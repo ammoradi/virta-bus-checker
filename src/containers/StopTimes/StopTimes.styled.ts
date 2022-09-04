@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledStopTimes = styled.main`
   width: 100%;
@@ -6,7 +6,7 @@ export const StyledStopTimes = styled.main`
   @media ${({ theme }) => theme.breakpoints.tablet} {
     padding-top: 64px;
   }
-`
+`;
 
 export const StyledSlug = styled.p`
   margin: 0;
@@ -18,7 +18,7 @@ export const StyledSlug = styled.p`
   @media ${({ theme }) => theme.breakpoints.tablet} {
     line-height: 48px;
   }
-`
+`;
 
 export const StyledDataWrapper = styled.div`
   margin-left: 4px;
@@ -29,7 +29,7 @@ export const StyledDataWrapper = styled.div`
     margin-left: 0;
     max-width: unset;
   }
-`
+`;
 
 export const StyledTitle = styled.h1`
   margin: 80px 0 32px 0;
@@ -45,4 +45,4 @@ export const StyledTitle = styled.h1`
     height: 40px;
     line-height: 32px;
   }
-`
+`;

@@ -1,4 +1,4 @@
-import { twoDigit, formatHHmm, getMinutesFromSeconds } from "./time";
+import {twoDigit, formatHHmm, getMinutesFromSeconds} from './time';
 
 describe('time utils - twoDigit', () => {
   it('should return a two digit stringified number', () => {

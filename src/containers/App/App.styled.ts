@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import BackgroundImage from 'assets/images/background.png'
+import BackgroundImage from 'assets/images/background.png';
 
 export const StyledAppContainer = styled.div`
   min-height: 100vh;
@@ -38,7 +38,7 @@ export const StyledAppContainer = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
   }
-`
+`;
 
 export const StyledLogoColumn = styled.div`
   width: 160px;
@@ -51,7 +51,7 @@ export const StyledLogoColumn = styled.div`
     width: 50%;
     justify-content: flex-start;
   }
-`
+`;
 
 export const StyledStopTimesColumn = styled.div`
   padding-left: 125px;
@@ -62,7 +62,7 @@ export const StyledStopTimesColumn = styled.div`
     order: 3;
     padding-left: 0;
   }
-`
+`;
 
 export const StyledClockColumn = styled.div`
   width: 214px;
@@ -74,4 +74,4 @@ export const StyledClockColumn = styled.div`
     display: flex;
     justify-content: flex-end;
   }
-`
+`;

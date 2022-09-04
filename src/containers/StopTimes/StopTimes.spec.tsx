@@ -8,20 +8,22 @@ import StopTimes, {StopTimesSlug} from './StopTimes';
 
 describe('<StopTimes /> container', () => {
   it('should render slug', () => {
-    renderWithThemeProvider(<StopTimes />)
+    renderWithThemeProvider(<StopTimes />);
 
-    expect(screen.getByText(StopTimesSlug)).toBeInTheDocument()
+    expect(screen.getByText(StopTimesSlug)).toBeInTheDocument();
   })
 
   it('should render title', () => {
-    renderWithThemeProvider(<StopTimes data={StopMock} />)
+    renderWithThemeProvider(<StopTimes data={StopMock} />);
 
-    expect(screen.getByText(StopMock.stop?.name as string)).toBeInTheDocument()
+    expect(screen.getByText(StopMock.stop?.name as string)).toBeInTheDocument();
   })
 
   it('should render list items', () => {
-    renderWithThemeProvider(<StopTimes data={StopMock} />)
+    renderWithThemeProvider(<StopTimes data={StopMock} />);
 
-    expect(screen.getAllByRole('listitem')).toHaveLength(StopMock.stop?.stopTimes?.length as number)
+    expect(screen.getAllByRole('listitem')).toHaveLength(
+      StopMock.stop?.stopTimes?.length as number
+    );
   })
 })

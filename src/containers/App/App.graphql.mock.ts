@@ -1,6 +1,6 @@
-import { StopTimesQuery } from './App.graphql.generated'
+import { StopTimesQuery } from './App.graphql.generated';
 
-const nowUnix = new Date().setHours(23,59,59,999) / 1000
+const nowUnix = new Date().setHours(23,59,59,999) / 1000;
 
 export const StopMock: StopTimesQuery = {
   stop: {
@@ -54,4 +54,4 @@ export const StopMock: StopTimesQuery = {
       }
     ]
   }
-}
+};

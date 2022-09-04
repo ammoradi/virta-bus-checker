@@ -1,13 +1,13 @@
 import React from 'react'
 
-import {formatHHmm} from 'utils/time'
+import {formatHHmm} from 'utils/time';
 
-import {ClockProps} from '../Clock.types'
-import {StyledStaticClock} from './StaticClock.styled'
+import {ClockProps} from '../Clock.types';
+import {StyledStaticClock} from './StaticClock.styled';
 
-type StaticClockProps = Required<Pick<ClockProps, 'time'>>
+type StaticClockProps = Required<Pick<ClockProps, 'time'>>;
 
-export const StaticClockTestId = 'StaticClock'
+export const StaticClockTestId = 'StaticClock';
 
 export function StaticClock ({time}: StaticClockProps): JSX.Element {
   const dateTime = new Date(time);
@@ -16,5 +16,5 @@ export function StaticClock ({time}: StaticClockProps): JSX.Element {
     <StyledStaticClock data-testid={StaticClockTestId}>
       {formatHHmm(dateTime)}
     </StyledStaticClock>
-  )
+  );
 }

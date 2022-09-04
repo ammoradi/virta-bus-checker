@@ -1,22 +1,22 @@
-import React, { ReactNode } from 'react'
-import { Normalize } from 'styled-normalize'
-import { ThemeProvider } from 'styled-components'
+import React, {ReactNode} from 'react';
+import {Normalize} from 'styled-normalize'
+import {ThemeProvider} from 'styled-components'
 
-import { ThemeVariables } from './variables'
-import { GlobalStyles } from './global.styled';
+import {ThemeVariables} from './variables';
+import {GlobalStyles} from './global.styled';
 
 type ThemeProps = {
-  children: ReactNode
+  children: ReactNode;
 }
 
-function Theme({ children }: ThemeProps) {
+function Theme({children}: ThemeProps) {
   return (
     <ThemeProvider theme={ThemeVariables}>
       <Normalize />
       <GlobalStyles />
       {children}
     </ThemeProvider>
-  )
+  );
 }
 
-export default Theme
+export default Theme;
