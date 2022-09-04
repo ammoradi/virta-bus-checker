@@ -3,7 +3,6 @@ import styled from "styled-components";
 import BackgroundImage from 'assets/images/background.png'
 
 export const StyledAppContainer = styled.div`
-  width: 100vw;
   min-height: 100vh;
   background-image: url(${BackgroundImage});
   background-size: auto 342px;

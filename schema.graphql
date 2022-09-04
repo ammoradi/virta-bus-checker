@@ -185,7 +185,7 @@ type Stop {
     numberOfDepartures: Int = 2
     omitNonPickups: Boolean = false
     omitCanceled: Boolean = true
-  ): [Stoptime]
+  ): [Stoptime!]
   # Returns timetable of the specified pattern at this stop
 
   gtfsId: String!
@@ -241,6 +241,6 @@ type Stop {
     numberOfDepartures: Int = 5
     omitNonPickups: Boolean = false
     omitCanceled: Boolean = true
-  ): [Stoptime]
+  ): [Stoptime!]
   # Returns list of stoptimes (arrivals and departures) at this stop
 }

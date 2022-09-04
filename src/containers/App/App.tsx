@@ -13,9 +13,10 @@ import {
 } from './App.styled'
 
 function AppContainer() {
-  const {data} = useStopTimesQuery({ fetchPolicy: 'cache-and-network' })
-
-  console.log(data)
+  const {data} = useStopTimesQuery({
+    fetchPolicy: 'cache-and-network',
+    pollInterval: 60000,
+  })
 
   return (
     <StyledAppContainer>
@@ -23,7 +24,7 @@ function AppContainer() {
         <Logo />
       </StyledLogoColumn>
       <StyledStopTimesColumn>
-        <StopTimes />
+        <StopTimes data={data} />
       </StyledStopTimesColumn>
       <StyledClockColumn>
         <Clock realtime />

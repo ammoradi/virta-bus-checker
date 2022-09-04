@@ -14,9 +14,16 @@ export const twoDigit = (num: number | string): string => {
  * @param {Date} dateTime 
  * @returns {string} time in HH:mm format
  */
- export const formatHHmm = (dateTime: Date): string => {
+export const formatHHmm = (dateTime: Date): string => {
   const hours = twoDigit(dateTime.getHours())
   const minutes = twoDigit(dateTime.getMinutes())
 
   return `${hours}:${minutes}`
 }
+
+/**
+ * @param {number} seconds 
+ * @returns {number} rounded minutes
+ */
+export const getMinutesFromSeconds = (seconds: number): number =>
+  Math.round(seconds / 60)

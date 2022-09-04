@@ -10,6 +10,13 @@ export const StyledBusCard = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-right: 56px;
+  margin-bottom: 8px;
+`
+
+export const StyledBusIconAndName = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
 `
 
 type StyledDelayBoxProps = {

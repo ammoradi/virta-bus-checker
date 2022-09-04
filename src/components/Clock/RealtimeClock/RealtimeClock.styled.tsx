@@ -8,4 +8,6 @@ export const StyledRealtimeClock = styled.h2`
   line-height: 42px;
   height: 50px;
   letter-spacing: -0.6px;
+  position: sticky;
+  top: 48px;
 `
