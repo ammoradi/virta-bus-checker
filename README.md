@@ -41,7 +41,7 @@ npm run test
 - buses list showing
 - buses positive and negative delays handling
 - synced global clock and buses list arrival estimation
-- real time data polling
+- real time data updating
 - ~90% code coverage
 - responsive design implementation
 
