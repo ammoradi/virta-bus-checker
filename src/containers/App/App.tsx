@@ -16,6 +16,9 @@ function AppContainer() {
   const {data} = useStopTimesQuery({
     fetchPolicy: 'cache-and-network',
     pollInterval: 60000,
+    variables: {
+      startTime: Math.floor(new Date().getTime() / 1000)
+    }
   });
 
   return (
