@@ -53,6 +53,9 @@ npm run test
 - Graphql typescript code generator
 - React Testing Library
 
+## Limitation
+A real bus checker web app should not show the incoming buses in 3-digit next minutes! But due to lack of data samples and to show how the minute estimation feature works, we ignored filtering bus arrivals in more than 1 hour!
+
 ## Todo
 - [ ] add `eslint` and `prettier`.
 - [ ] add integration tests for `<App />` container.
