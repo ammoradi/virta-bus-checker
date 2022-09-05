@@ -104,4 +104,20 @@ describe('<BusCard />', () => {
       screen.getByTestId(ArrivalTimeTestId).textContent
     ).toBe('In 3 minutes / 00:03');
   });
+
+  it('should render "now" when bus is arriving in less than 60 seconds', () => {
+    renderWithThemeProvider(
+      <BusCard
+        name="15"
+        baseTime={new Date('2022-02-02 00:01:01').getTime()}
+        serviceDay={serviceDayMock}
+        arrivalTime={120}
+        delayTime={0}
+      />
+    );
+
+    expect(
+      screen.getByTestId(ArrivalTimeTestId).textContent
+    ).toBe('now / 00:02');
+  });
 });
