@@ -1,4 +1,5 @@
 import React from 'react';
+import useInterval from '@use-it/interval';
 
 import {Logo} from 'components/Logo';
 import {Clock} from 'components/Clock';
@@ -13,13 +14,18 @@ import {
 } from './App.styled';
 
 function AppContainer() {
-  const {data} = useStopTimesQuery({
+  const getQueryVariables = () => ({
+    startTime: Math.floor(new Date().getTime() / 1000)
+  })
+
+  const {data, refetch} = useStopTimesQuery({
     fetchPolicy: 'cache-and-network',
-    pollInterval: 20000,
-    variables: {
-      startTime: Math.floor(new Date().getTime() / 1000)
-    }
+    variables: getQueryVariables()
   });
+
+  useInterval(() => {
+    refetch(getQueryVariables())
+  }, 20000)
 
   return (
     <StyledAppContainer>
