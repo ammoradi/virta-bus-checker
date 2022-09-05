@@ -34,7 +34,8 @@ function BusCard({
 }: CardProps) {
   const serviceDayTimestamp = serviceDay * 1000;
   const arrivalUnixTimestamp = serviceDayTimestamp + (arrivalTime * 1000);
-  const arrivalTimeInMinutes = getMinutesFromSeconds((arrivalUnixTimestamp - baseTime) / 1000);
+  const arrivalTimeInSeconds = (arrivalUnixTimestamp - baseTime) / 1000;
+  const arrivalTimeInMinutes = getMinutesFromSeconds(arrivalTimeInSeconds);
   const absDelayTime = Math.abs(delayTime);
 
   const isDelayed = !!delayTime;
@@ -51,7 +52,13 @@ function BusCard({
           {name} {isDelayed && `(${delayTimeInMinutes} ${getMinuteText(delayTimeInMinutes)} ${delayTime > 0 ? 'late' : 'earlier'})`}
         </StyledBusName>
         <StyledArrivalTime data-testid={ArrivalTimeTestId}>
-          In {arrivalTimeInMinutes} {getMinuteText(arrivalTimeInMinutes)} /{' '}
+          {arrivalTimeInSeconds < 60 ? (
+            'now / '
+          ) : (
+            <>
+              In {arrivalTimeInMinutes} {getMinuteText(arrivalTimeInMinutes)} /{' '}
+            </>
+          )}
           <Clock realtime={false} time={arrivalUnixTimestamp} />
         </StyledArrivalTime>
       </BusNameAndArrivalTime>
