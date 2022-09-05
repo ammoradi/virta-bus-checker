@@ -1,7 +1,16 @@
 # Virta Bus Checker
 This web app fetches buses arrival/departure data of a specific station/stop place in Helsinki through digitransit GraphQl endpoint and shows them properly both for desktop and mobile users.
 
-### Install & run
+### Table of contents
+- [Install & run](#install--run)
+- [Test](#test)
+- [Features](#features)
+- [Stack](#stack)
+- [Limitation](#limitation)
+- [Todo](#todo)
+---
+
+## Install & run
 install packages:
 ```
 npm install
@@ -19,7 +28,7 @@ npm run build && serve -s build
 
 _the project developed using node v16.x.x and npm v8.x.x_
 
-### Test
+## Test
 this project is **Unit Tested** carefully!
 to run all the test cases with coverage report:
 ```
@@ -54,7 +63,7 @@ npm run test
 - React Testing Library
 
 ## Limitation
-A real bus checker web app should not show the incoming buses in 3-digit next minutes! But due to lack of data samples and to show how the minute estimation feature works, we ignored filtering bus arrivals in more than 1 hour!
+A real bus checker web app should not show the incoming buses in 3-digit next minutes! But due to lack of data samples and to show how the minutes estimation feature works, we don't filter bus arrivals in more than 1 hour!
 
 ## Todo
 - [ ] add `eslint` and `prettier`.
